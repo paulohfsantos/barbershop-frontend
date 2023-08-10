@@ -4,7 +4,7 @@
       <FormKit
         id="signupForm"
         type="form"
-        submit-label="Setup a Reservation"
+        submit-label="Send"
         @submit="onSubmit"
         :submit-attrs="{
           inputClass: '$reset formkit-input btn btn-primary w-full text-white',
