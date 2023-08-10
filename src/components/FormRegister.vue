@@ -60,9 +60,12 @@
 </template>
 
 <script setup lang="ts">
-const onSubmit = (e: Event) => {
-  e.preventDefault();
-  console.log('submit');
-  // api call
-};
+import { useAuth } from '../store/auth';
+import { IRegisterRequest } from '../types/auth';
+
+const { register } = useAuth();
+
+const onSubmit = async ({ email, name, password }: IRegisterRequest) => {
+  await register(name, email, password);
+}
 </script>
