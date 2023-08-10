@@ -1,10 +1,12 @@
 import daisyUI from 'daisyui'
+import FormKitVariants from '@formkit/themes/tailwindcss'
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,vue, html}",
+    "./tailwind-theme.ts"
   ],
   theme: {
     extend: {},
@@ -13,28 +15,9 @@ export default {
     themes: [
       "light",
       "dark",
-      // "cupcake",
-      // "bumblebee",
-      // "emerald",
-      // "corporate",
-      // "synthwave",
-      // "retro",
-      // "cyberpunk",
-      // "valentine",
-      // "halloween",
-      // "garden",
-      // "forest",
-      // "aqua",
-      // "lofi",
-      // "pastel",
-      // "fantasy",
-      // "wireframe",
-      // "black",
-      // "luxury",
       "dracula",
-      // "cmyk",
     ],
   },
-  plugins: [daisyUI],
+  plugins: [daisyUI, FormKitVariants],
 }
 
