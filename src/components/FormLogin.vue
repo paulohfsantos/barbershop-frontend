@@ -27,6 +27,18 @@
           }"
           autocomplete="new-password"
         />
+
+        <div class="mb-3">
+          <span class="text-xs text-gray-600">
+            Not a member?
+            <router-link
+              class="btn-xs link-hover text-gray-400"
+              to="/register"
+            >
+              Register
+            </router-link>
+          </span>
+        </div>
       </FormKit>
     </div>
   </div>

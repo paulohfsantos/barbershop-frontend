@@ -42,6 +42,18 @@
           }"
           autocomplete="new-password"
         />
+
+        <div class="mb-3">
+          <span class="text-xs text-gray-600">
+            Already have an account?
+            <router-link
+              class="btn-xs link-hover text-gray-400"
+              to="/login"
+            >
+              Login
+            </router-link>
+          </span>
+        </div>
       </FormKit>
     </div>
   </div>
