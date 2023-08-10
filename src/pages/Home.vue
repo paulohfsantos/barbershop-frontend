@@ -1,13 +1,13 @@
 <template>
   <div class="hero min-h-screen bg-base-200">
-  <div class="hero-content">
-    <div class="max-w-xl">
-      <Form />
+    <div class="hero-content">
+      <div class="max-w-xl">
+        <FormRegister />
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script setup lang="ts">
-import Form from '../components/Form.vue';
+import FormRegister from '../components/FormRegister.vue';
 </script>
