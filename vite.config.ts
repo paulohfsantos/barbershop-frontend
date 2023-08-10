@@ -15,7 +15,7 @@ export default ({ mode }: { mode: string }) => {
     define: {
       'process.env': {
         // NODE_ENV: process.env.NODE_ENV,
-        // API_LOCAL: process.env.VITE_API_LOCAL,
+        API_URL: process.env.VITE_API_URL,
       }
     },
     resolve: {
