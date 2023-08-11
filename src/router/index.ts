@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { hasToken } from '../common/headerAuth'
-// import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
 import Register from '../pages/Register.vue'
 
@@ -30,17 +29,8 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
   const loggedIn = hasToken()
-
-  // if (to.meta.requiresAuth && !loggedIn) {
-  //   next('/login')
-  // } else if (!to.meta.requiresAuth && loggedIn) {
-  //   next('/')
-  //   window.location.href = '/'
-  // } else {
-  //   next()
-  // }
 
   if (to.meta.requiresAuth && !loggedIn) {
     next('/login')
@@ -52,7 +42,7 @@ router.beforeEach((to, from, next) => {
 })
 
 // change html title
-router.afterEach((to, from) => {
+router.afterEach((to) => {
   document.title = `BarberShop | ${to.meta.title}`
 })
 
