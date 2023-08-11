@@ -47,10 +47,15 @@
 <script setup lang="ts">
 import { useAuth } from '../store/auth';
 import { ILoginRequest } from '../types/auth';
+import { hasToken } from '../common/headerAuth';
+import { useRouter } from 'vue-router';
 
 const { login } = useAuth();
+const router = useRouter();
 
 const onSubmit = async ({ email, password }: ILoginRequest) => {
   await login(email, password);
+
+  if (hasToken()) { router.replace('/') }
 }
 </script>

@@ -33,11 +33,19 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const loggedIn = hasToken()
 
+  // if (to.meta.requiresAuth && !loggedIn) {
+  //   next('/login')
+  // } else if (!to.meta.requiresAuth && loggedIn) {
+  //   next('/')
+  //   window.location.href = '/'
+  // } else {
+  //   next()
+  // }
+
   if (to.meta.requiresAuth && !loggedIn) {
     next('/login')
-  } else if (!to.meta.requiresAuth && loggedIn) {
+  } else if (to.path === '/login' && loggedIn) {
     next('/')
-    window.location.href = '/'
   } else {
     next()
   }
