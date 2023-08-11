@@ -1,27 +1,51 @@
-import axios from 'axios';
 import { useAuth } from '../store/auth';
 import type { AxiosRequestHeaders } from 'axios';
 import type { IUser } from '../types/user';
+import { api } from '../api/api';
 
 export const setHeader = () => {
   const auth = useAuth();
   const token = auth.token;
   const headers = {} as AxiosRequestHeaders;
 
-  token && (headers['Authorization'] = `Bearer ${token}`);
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+    console.log(`Bearer ${token}`);
+  }
 
-  axios.defaults.headers = headers as any;
-  axios.interceptors.response.use((response) => response);
+  api.interceptors.request.use((config) => {
+    config.headers = headers;
+    return config;
+  });
 
   return headers;
 }
 
+export async function isLogged() {
+  const token = getToken();
+
+  if (!token) {
+    return false;
+  }
+
+  api.defaults.headers.Authorization = `Bearer ${token}`;
+
+  try {
+    await api.get("/660/users");
+  } catch (error) {
+    killToken();
+    return false;
+  }
+
+  return true;
+}
+
 export function saveToken(token: string) {
-  localStorage.setItem('token', token);
+  localStorage.setItem('authToken', token);
 }
 
 export function getToken() {
-  return localStorage.getItem('token');
+  return localStorage.getItem('authToken');
 }
 
 export function hasToken() {
@@ -29,7 +53,7 @@ export function hasToken() {
 }
 
 export function killToken() {
-  localStorage.removeItem('token');
+  localStorage.removeItem('authToken');
 }
 
 export function setUser(user: IUser) {

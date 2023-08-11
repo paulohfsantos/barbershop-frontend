@@ -13,7 +13,8 @@
       </div>
       
       <UserSettings
-        :logout="logout"
+        :username="user?.username"
+        @logout="logoutUser"
       />
     </div>
   </div>
@@ -24,12 +25,21 @@ import { onMounted } from 'vue';
 import { themeChange } from 'theme-change';
 import { themes } from '../utils/themes';
 import { useAuth } from '../store/auth';
+import { getUser } from '../common/headerAuth';
 
 import UserSettings from './UserSettings.vue';
 
 const { logout } = useAuth();
+const user = getUser();
 
 onMounted(() => {
   themeChange(false);
 });
+
+const logoutUser = () => {
+  logout();
+  window.location.href = '/login';
+  console.log('logout', user);
+  
+};
 </script>

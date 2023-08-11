@@ -1,4 +1,5 @@
 import { AxiosAdapter } from '../api/axiosAdapter';
+import { setHeader } from '../common/headerAuth';
 import { IAuthResponse } from '../types/auth';
 
 export class AuthService {
@@ -6,14 +7,14 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const response = await this.http
-      .post<IAuthResponse>('/login', { email, password });
+      .post<IAuthResponse>('/login', { email, password }, setHeader());
 
     return response;
   }
 
   async register(name: string, email: string, password: string) {
     const response = await this.http
-      .post<IAuthResponse>('/register', { name, email, password });
+      .post<IAuthResponse>('/register', { name, email, password }, setHeader());
 
     return response;
   }

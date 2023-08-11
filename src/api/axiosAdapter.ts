@@ -3,27 +3,27 @@ import type { HttpClient } from './httpClient';
 import type { AxiosResponse, AxiosRequestHeaders } from 'axios';
 
 export class AxiosAdapter implements HttpClient {
-  async get<T>(url: string, header?: AxiosRequestHeaders): Promise<T> {
+  async get<T>(url: string, header: AxiosRequestHeaders): Promise<T> {
     const response = await api.get<T>(url, { headers: header });
     return this.handleResponse(response);
   }
 
-  async post<T>(url: string, body: unknown, header?: AxiosRequestHeaders): Promise<T> {
+  async post<T>(url: string, body: unknown, header: AxiosRequestHeaders): Promise<T> {
     const response = await api.post<T>(url, body, { headers: header });
     return this.handleResponse(response);
   }
 
-  async put<T>(url: string, body: unknown, header?: AxiosRequestHeaders): Promise<T> {
+  async put<T>(url: string, body: unknown, header: AxiosRequestHeaders): Promise<T> {
     const response = await api.put<T>(url, body, { headers: header });
     return this.handleResponse(response);
   }
 
-  async patch<T>(url: string, body: unknown, header?: AxiosRequestHeaders): Promise<T> {
+  async patch<T>(url: string, body: unknown, header: AxiosRequestHeaders): Promise<T> {
     const response = await api.patch<T>(url, body, { headers: header });
     return this.handleResponse(response);
   }
 
-  async delete<T>(url: string, header?: AxiosRequestHeaders): Promise<T> {
+  async delete<T>(url: string, header: AxiosRequestHeaders): Promise<T> {
     const response = await api.delete<T>(url, { headers: header });
     return this.handleResponse(response);
   }

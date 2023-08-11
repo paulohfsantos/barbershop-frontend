@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { pinia } from './store'
 import { router } from './router'
-import { plugin, defaultConfig } from '@formkit/vue'
+import { plugin as formKitPlugin, defaultConfig } from '@formkit/vue'
 import config from '../formkit.config'
 
 import Toast, { PluginOptions, POSITION } from "vue-toastification";
@@ -24,8 +24,8 @@ const options: PluginOptions = {
 
 app
   .use(Toast, options)
-  .use(router)
   .use(pinia)
-  .use(plugin, defaultConfig(config))
+  .use(router)
+  .use(formKitPlugin, defaultConfig(config))
 
   app.mount('#app')

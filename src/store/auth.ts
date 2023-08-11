@@ -11,13 +11,16 @@ export const useAuth = defineStore('auth', () => {
   const toast = useToast()
   const authService = new AuthService();
   
-  const token = ref(localStorage.getItem('token') || '')
+  const token = ref(localStorage.getItem('authToken') || '')
 
   async function login(email: string, password: string) {
     try {
       const response = await authService.login(email, password)
-      token.value = response.access_token
+      token.value = response.accessToken
+      console.log(response);
+      
       saveToken(token.value)
+      console.log('logou?', token.value);
 
       toast.success('User logged in successfully')
     } catch (error: unknown) {
@@ -36,7 +39,7 @@ export const useAuth = defineStore('auth', () => {
     }
   }
 
-  const logout = () => {
+  async function logout() {
     token.value = ''
     killToken()
     killUser()
