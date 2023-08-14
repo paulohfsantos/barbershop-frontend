@@ -39,7 +39,5 @@ onMounted(() => {
 const logoutUser = () => {
   logout();
   window.location.href = '/login';
-  console.log('logout', user);
-  
 };
 </script>

@@ -61,7 +61,7 @@
 
 <script setup lang="ts">
 import { useAuth } from '../store/auth';
-import { IRegisterRequest } from '../types/auth';
+import type { IRegisterRequest } from '../types/auth';
 
 const { register } = useAuth();
 

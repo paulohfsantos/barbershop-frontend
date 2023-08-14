@@ -1,8 +1,19 @@
+import { ILoginRequest, IRegisterRequest } from '../types/auth';
 import { api } from './api';
 import type { HttpClient } from './httpClient';
 import type { AxiosResponse, AxiosRequestHeaders } from 'axios';
 
 export class AxiosAdapter implements HttpClient {
+  async auth<T>(url: string, body: ILoginRequest): Promise<T> {
+    const response = await api.post<T>(url, body);
+    return this.handleResponse(response);
+  }
+
+  async register<T>(url: string, body: IRegisterRequest): Promise<T> {
+    const response = await api.post<T>(url, body);
+    return this.handleResponse(response);
+  }
+
   async get<T>(url: string, header: AxiosRequestHeaders): Promise<T> {
     const response = await api.get<T>(url, { headers: header });
     return this.handleResponse(response);

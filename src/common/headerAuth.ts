@@ -1,16 +1,15 @@
 import { useAuth } from '../store/auth';
+import { api } from '../api/api';
 import type { AxiosRequestHeaders } from 'axios';
 import type { IUser } from '../types/user';
-import { api } from '../api/api';
 
 export const setHeader = () => {
   const auth = useAuth();
   const token = auth.token;
   const headers = {} as AxiosRequestHeaders;
 
-  if (token) {
+  if (hasToken()) {
     headers.Authorization = `Bearer ${token}`;
-    console.log(`Bearer ${token}`);
   }
 
   api.interceptors.request.use((config) => {
@@ -29,13 +28,6 @@ export async function isLogged() {
   }
 
   api.defaults.headers.Authorization = `Bearer ${token}`;
-
-  try {
-    await api.get("/660/users");
-  } catch (error) {
-    killToken();
-    return false;
-  }
 
   return true;
 }
