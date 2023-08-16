@@ -27,7 +27,7 @@ export async function isLogged() {
     return false;
   }
 
-  api.defaults.headers.Authorization = `Bearer ${token}`;
+  api.defaults.headers.Authorization = token;
 
   return true;
 }

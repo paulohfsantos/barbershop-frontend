@@ -14,6 +14,7 @@
       
       <UserSettings
         :username="user?.username"
+        :email="user?.email"
         @logout="logoutUser"
       />
     </div>
@@ -31,6 +32,8 @@ import UserSettings from './UserSettings.vue';
 
 const { logout } = useAuth();
 const user = getUser();
+
+console.log(user);
 
 onMounted(() => {
   themeChange(false);

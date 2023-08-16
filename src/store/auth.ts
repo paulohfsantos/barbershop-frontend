@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { AuthService } from '../services/authService';
-import { killToken, killUser, saveToken } from '../common/headerAuth';
+import { killToken, killUser, saveToken, setUser } from '../common/headerAuth';
 import { useToast } from "vue-toastification";
 import type { AxiosError } from 'axios';
 
@@ -16,9 +16,10 @@ export const useAuth = defineStore('auth', () => {
   async function login(email: string, password: string) {
     try {
       const response = await authService.login(email, password)
-      token.value = response.accessToken
+      token.value = response.token
       
       saveToken(token.value)
+      setUser(response.user)
 
       toast.success('User logged in successfully')
     } catch (error: unknown) {

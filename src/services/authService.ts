@@ -6,14 +6,14 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const response = await this.http
-      .auth<IAuthResponse>('/login', { email, password });
+      .auth<IAuthResponse>('/api/public/login', { email, password });
 
     return response;
   }
 
   async register(name: string, email: string, password: string) {
     const response = await this.http
-      .register<IAuthResponse>('/register', { name, email, password });
+      .register<IAuthResponse>('/api/public/register', { name, email, password });
 
     return response;
   }
