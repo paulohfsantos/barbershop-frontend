@@ -9,7 +9,6 @@ export default ({ mode }: { mode: string }) => {
     ],
     define: {
       'process.env': {
-        API_URL: process.env.VITE_API_URL,
         BASE_URL: process.env.VITE_API_BASE_URL
       }
     },
